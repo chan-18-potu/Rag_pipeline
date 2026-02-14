@@ -1,0 +1,110 @@
+[
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 0,
+    "text": "--- Page 1 --- Generative Ai Fundamentals Introduction and Applications Part 1: \uf0b7 There are two approaches to AI: o Discriminative AI : \uf0a7 Learns to distinguish different classes of data \uf0a7 Different, classify, identify patterns, draw conclusions o Generative AI : \uf0a7 Create new content based on training data \uf0a7 Starts with a prompt; output is a new text, image, audio, video, code, data o Both use Deep Learning \uf0b7 GenAi Models: o Generative Adversarial Networks (GANs) o Variational autoencoders (VAEs)"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 1,
+    "text": " Learning \uf0b7 GenAi Models: o Generative Adversarial Networks (GANs) o Variational autoencoders (VAEs) o Transformers o Diffusion Models \uf0b7 Capabilitie s of GenAi: o Text generation o Image generation o Audio generation o Video generation o Code generation o Data generation and augmentation o Virtual worlds Part 2. Foundation Models and Platforms A. Deep Learning and Large Language Models \uf0b7 Deep Learning: o Performed with the help of Artificial Neural Networks (ANNs): \uf0a7 ANNs are neurons --- Page 2 "
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 2,
+    "text": "ning: o Performed with the help of Artificial Neural Networks (ANNs): \uf0a7 ANNs are neurons --- Page 2 --- \uf0b7 Each neuron in the hidden layer contains inherent bias parameters \uf0b7 Connection between 2 neurons establishes weight parameters \uf0a7 Organized in 3 layers: \uf0b7 Input layer \uf0b7 Hidden layers \uf0b7 Output layer o Supervised DL: \uf0a7 Predefined output o Unsupervised DL: \uf0a7 Applications: \uf0b7 Clustering \uf0b7 Dimensionality Reduction o DL Neural Architecture differentiates the level of responses produced by the algo: "
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 3,
+    "text": "lity Reduction o DL Neural Architecture differentiates the level of responses produced by the algo: \uf0a7 Convolutional Neural Network (CNN): \uf0b7 Conducts a convolution / mathematical operation on a previous layer \uf0b7 Able to extract useful information from images to recognize patterns, classify images and segment pics \uf0b7 Useful: o Image processing o Video recognition o Natural language processing \uf0a7 Recurrent Neural Network (RNN) : \uf0b7 Efficie nt in processing sequential data such as text and speech \uf0b7 Proc"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 4,
+    "text": "ent Neural Network (RNN) : \uf0b7 Efficie nt in processing sequential data such as text and speech \uf0b7 Process memory component which enables them to capture dependencies and contextual information over time \uf0b7 Useful: o Machine translation o Sentiment analysis o Speech recognition \uf0a7 Transformer -based models : \uf0b7 Have a 2 stack structure where there is an encoder and decoder process \u2013 an exceptionally high number of parameters --- Page 3 --- \uf0b7 Analyzes and captures the context and meaning of words in a "
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 5,
+    "text": "h number of parameters --- Page 3 --- \uf0b7 Analyzes and captures the context and meaning of words in a hierarchical sequence and predicts the next word in the output sequence \uf0b7 This lead s to creation of LLM B. Core Generative Ai Models \uf0b7 There are 4 Gen Ai Models with different DL architectures and use a probabilistic approach: o Variational Autoencoders (VAE): \uf0a7 Work with diverse range of data \u2013 images, audio, text \uf0a7 Rapidly reduce dimensionality \uf0a7 Original Input -> Encoder -> Latent Space -> Dec"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 6,
+    "text": "ages, audio, text \uf0a7 Rapidly reduce dimensionality \uf0a7 Original Input -> Encoder -> Latent Space -> Decoder -> Reconstructed Output \uf0b7 Encoder \u2013 studies the probability distribution o Isolates the most useful data variables which creates the most compressed representation of the data and stores in latent space \uf0b7 Latent Space: o Mathematical space o Stores large dimensional data in a compressed format \uf0b7 Decoder: o Decompresses the compressed the data in the latent space to generate the desired output"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 7,
+    "text": "\uf0b7 Decoder: o Decompresses the compressed the data in the latent space to generate the desired output \uf0a7 VAE is trained in a static environment but the latent space is continuous \uf0b7 This generates new samples by random sampling \uf0b7 Produce realistic varied images \uf0b7 Usage: o Image synthesis: create game maps; generate Anime Avatars o Data compression: forecast the volatility surfaces of stocks o Anomaly detection: detect diseases using electrocardiogram signals o Generative Adversarial Networks : \uf0a7 Us"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 8,
+    "text": " detection: detect diseases using electrocardiogram signals o Generative Adversarial Networks : \uf0a7 Uses imagery and textual input \uf0a7 Uses 2 CNNs compete with each other in an adversarial game --- Page 4 --- \uf0b7 1 CNN plays the role of a generator and is trained on a vast dataset to produce data samples \uf0b7 Other CNN plays the role of a discriminator and tries to distinguish between real and fake samples \uf0b7 Based on the discriminator's responses, the generator seeks to produce more realistic data sample"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 9,
+    "text": " \uf0b7 Based on the discriminator's responses, the generator seeks to produce more realistic data samples \uf0b7 Applications: o Creates new, realistic images o Style transfer o Image -to-image translation o Deep fakes o Finance \u2013 loan pricing or generating time series o Creates video game characters \uf0b7 Challenges: o Difficult to train o Large amount of data o Heavy computational power o Can create false material o Transformer -based Models : \uf0a7 Focuses on valuable text and filter unnecessary text o Diffus"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 10,
+    "text": "terial o Transformer -based Models : \uf0a7 Focuses on valuable text and filter unnecessary text o Diffusion Models : \uf0a7 Recent addition to GenAi \uf0a7 Addresses the systematic decay of data due to noise in the latent space by a ppling the principles of diffusion to prevent information loss \uf0a7 Diffusion process \u2013 moves molecules from high -density to low - density similarly the diffusion models moves noise to and from the data sample \uf0b7 Step 1: Forward Diffusion: algorithm gradually add random noise to a tr"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 11,
+    "text": "o and from the data sample \uf0b7 Step 1: Forward Diffusion: algorithm gradually add random noise to a training data \uf0b7 Step 2: Reverse Diffusion: turn t he noise to around to recover the data and generate the desired output \uf0a7 Benefits: \uf0b7 Can train unlimited layers \uf0b7 Remarkable for image and video data C. Foundation Models \uf0b7 Foundation Model is a large general purpose self -supervised pre -trained on a vast amounts of unlabeled data with billions of parameters --- Page 5 --- \uf0b7 Large Language Models: o"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 12,
+    "text": "vast amounts of unlabeled data with billions of parameters --- Page 5 --- \uf0b7 Large Language Models: o Trained on NLP o Develop independent reasoning which allows them to respond to queries uniquely \uf0b7 Pre-Trained Models: Text -to-Text Generation o ML model o Trained on large corpus of text o Types o f Model: \uf0a7 Statistical Model: \uf0b7 Markov Chain o Takes a sequence of states \uf0a7 Neural Network Models: \uf0b7 Use artificial neural networks to generate text \uf0b7 Represents complex relationships between data \uf0b7 Tr"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 13,
+    "text": "Use artificial neural networks to generate text \uf0b7 Represents complex relationships between data \uf0b7 Trained on a large corpus \uf0b7 Generates text similar to the text they are trained on \uf0a7 Use Sequence -2-sequence models or transformer models \uf0a7 Seq2Seq (Sequence to Sequence): \uf0b7 First encode the input text into a sequence of numbers then decode into a new number sequence o The new number sequence represents the generated text \uf0b7 Used for tas ks with sequential data \uf0b7 Used: o Summarization o Speech Recog"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 14,
+    "text": "nts the generated text \uf0b7 Used for tas ks with sequential data \uf0b7 Used: o Summarization o Speech Recognition o Machine Translation \uf0a7 Transformer Models: \uf0b7 Directly map the input text to the generated text Gen Ai and Large Language Model Lifecycle \uf0b7 Gen Ai is the subset of machine learning \uf0b7 These models have learned to find statistical patterns in massive datasets \uf0b7 Foundational / Base models: \uf0a7 GPT --- Page 6 --- \uf0a7 Bloom \uf0a7 FLAN -T5 \uf0a7 PaLM \uf0a7 LLaMa \uf0a7 BERT Generative AI Project Lifecycle: 1. Scope \u2013"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 15,
+    "text": " --- Page 6 --- \uf0a7 Bloom \uf0a7 FLAN -T5 \uf0a7 PaLM \uf0a7 LLaMa \uf0a7 BERT Generative AI Project Lifecycle: 1. Scope \u2013 Define the use case: a. LLMs are capable of carrying out many tasks but their abilities depend strongly on the size and architecture of the model b. Tasks: i. Essay writing ii. Summarization iii. Translation iv. Information retrieval v. Invoke APIs and action 2. Select \u2013 Choose an existing model (foundational model) or pretrain your own: 3. Adapt and ali gn model: a. Prompt Engineering: prompt en"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 16,
+    "text": "oundational model) or pretrain your own: 3. Adapt and ali gn model: a. Prompt Engineering: prompt engineering is the process where you guide LLM to generate desired output. i. Zero Shot ii. One Shot iii. Few Shot b. Fine-tuning: supervised learning process c. Align with human feedback --- Page 7 --- d. Evaluate 4. Application Integration: a. Optimize and deploy model for inference b. Augment model and build LLM powered applications"
+  },
+  {
+    "user_id": "test_user",
+    "document_id": "doc1",
+    "chunk_id": 17,
+    "text": " and build LLM powered applications"
+  }
+]
