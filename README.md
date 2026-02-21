@@ -1,198 +1,220 @@
-RAG PIPELINE 
+# RAG Pipeline
 
-OVERVIEW
-This project implements a Retrieval-Augmented Generation (RAG) pipeline that allows users to upload PDF documents and ask questions.
-If the answer exists in the uploaded documents, the system answers from the document.
-If the answer does not exist, the system falls back to general knowledge.
+## Overview
 
-The system is designed with a clear separation between OFFLINE (document ingestion) and ONLINE (question answering) phases, following real-world GenAI architecture.
+This project implements a **Retrieval-Augmented Generation (RAG)** pipeline that enables users to upload PDF documents and ask questions based on their content.
 
-HIGH LEVEL FLOW
+* If the answer exists within the uploaded documents, the system generates a response grounded in those documents.
+* If the answer is not found, the system falls back to general knowledge using an LLM.
 
-OFFLINE (Ingestion):
-PDF → Text Extraction → Cleaning → Chunking → Embeddings → FAISS Index → Metadata
+The architecture follows real-world Generative AI system design principles with a strict separation between:
 
-ONLINE (Query):
-Question → Embedding → FAISS Search → Confidence Check
-→ Document-based Answer OR General Knowledge Answer
+* **Offline Phase** – Document ingestion and indexing
+* **Online Phase** – Query processing and answer generation
 
-PROJECT STRUCTURE
+This separation improves scalability, modularity, and maintainability.
 
+---
+
+# Architecture Overview
+
+## High-Level Flow
+
+### Offline (Document Ingestion)
+
+PDF
+→ Text Extraction
+→ Cleaning & Normalization
+→ Chunking (with overlap)
+→ Embedding Generation
+→ FAISS Vector Indexing
+→ Metadata Storage
+
+---
+
+### Online (Question Answering)
+
+User Question
+→ Query Embedding
+→ FAISS Similarity Search
+→ Confidence Evaluation
+→ Document-Based Answer
+OR
+→ General Knowledge Fallback
+
+---
+
+# Project Structure
+
+```
 Rag_Pipeline/
-faiss_index/
-index.faiss (auto-generated vector index)
+│
+├── faiss_index/
+│   └── index.faiss                # Auto-generated vector index
+│
+├── offline_storage/
+│   └── users/
+│       └── <user_id>/
+│           ├── files/             # Uploaded PDFs
+│           ├── text/              # Extracted text (optional)
+│           └── metadata/          # Chunk metadata JSON
+│
+├── confidence_check.py
+├── config.py
+├── embedding_service.py
+├── faiss_store.py
+├── llm_service.py
+├── offline_pipeline.py
+├── online_pipeline.py
+├── pdf_loader.py
+├── prompt_builder.py
+├── query_embedding.py
+├── retriever.py
+├── text_processing.py
+├── utils.py
+├── streamlit_app.py
+├── .env
+└── README.md
+```
 
-offline_storage/
-users/
-<user_id>/
-files/ (uploaded PDFs)
-text/ (optional extracted text)
-metadata/ (chunk metadata JSON)
+---
 
-confidence_check.py
-config.py
-embedding_service.py
-faiss_store.py
-llm_service.py
-offline_pipeline.py
-online_pipeline.py
-pdf_loader.py
-prompt_builder.py
-query_embedding.py
-retriever.py
-text_processing.py
-utils.py
-streamlit_app.py
-.env
-README.md
+# Offline Phase – Document Ingestion
 
-OFFLINE PHASE – DOCUMENT INGESTION
+### Entry Point
 
-ENTRY POINT:
+```python
 process_pdf(user_id, pdf_path, document_id)
+```
 
-WHAT IT DOES:
+### Responsibilities
 
-Creates user folders if missing
+* Creates user-specific storage directories
+* Extracts text from uploaded PDF
+* Cleans and normalizes text
+* Splits text into overlapping chunks
+* Converts chunks into embeddings
+* Creates or loads FAISS index
+* Stores embeddings in FAISS
+* Saves updated FAISS index to disk
+* Stores metadata mapping chunks to vector IDs
 
-Reads PDF and extracts text
+### Output
 
-Normalizes text
+* `faiss_index/index.faiss`
+* Metadata JSON per document
+* Document becomes searchable
 
-Splits text into overlapping chunks
+> Important:
+> FAISS stores only vector embeddings.
+> Text content and user ownership are maintained separately in metadata.
 
-Converts chunks into embeddings
+---
 
-Loads or creates FAISS index
+# Online Phase – Question Answering
 
-Adds embeddings to FAISS
+### Entry Point
 
-Saves FAISS index to disk
-
-Stores metadata mapping chunks to vectors
-
-OUTPUT:
-
-faiss_index/index.faiss
-
-metadata JSON per document
-
-document becomes searchable
-
-IMPORTANT:
-FAISS stores only vectors.
-Text and ownership are stored separately in metadata.
-
-ONLINE PHASE – QUESTION ANSWERING
-
-ENTRY POINT:
+```python
 answer_question(user_id, question)
+```
 
-WHAT IT DOES:
+### Responsibilities
 
-Converts question into embedding
+* Converts question into embedding
+* Performs similarity search in FAISS
+* Retrieves top matching chunks
+* Applies confidence threshold
 
-Searches FAISS index
+If confidence is high:
 
-Retrieves top matching chunks
+* Builds document-grounded prompt
+* Calls LLM
+* Returns document-based answer
 
-Applies confidence threshold
+If confidence is low:
 
-If confident:
+* Uses general knowledge prompt
+* Calls LLM
+* Returns fallback answer
 
-Builds document-based prompt
+### Output
 
-Calls LLM
+* Generated answer
+* Source label:
 
-Returns answer from document
+  * `Document`
+  * `General Knowledge`
 
-If not confident:
+---
 
-Uses general knowledge prompt
+# Key Design Principles
 
-Calls LLM
+* Strict separation between Offline and Online phases
+* FAISS handles only vector similarity search
+* LLM handles reasoning and natural language generation
+* Confidence threshold reduces hallucination risk
+* User data isolation per session
+* Metadata bridges vector IDs and actual text
 
-Returns fallback answer
+---
 
-OUTPUT:
+# Streamlit User Interface
 
-Answer text
+The project includes a Streamlit-based UI that:
 
-Source label (Document or General Knowledge)
+* Uploads PDF documents
+* Generates a session-based `user_id`
+* Executes offline ingestion automatically
+* Accepts user questions
+* Displays answers with source attribution
 
-KEY DESIGN PRINCIPLES
+### Run the application:
 
-Offline and Online phases are strictly separated
-
-FAISS handles only vector search
-
-LLM handles only reasoning and language generation
-
-Confidence gate prevents hallucination
-
-User data is isolated
-
-Metadata bridges vectors and text
-
-STREAMLIT UI
-
-The project includes a Streamlit UI that:
-
-Uploads PDFs
-
-Generates a session-based user_id
-
-Runs offline ingestion
-
-Accepts questions
-
-Displays answers with source labels
-
-Run with:
+```
 streamlit run streamlit_app.py
+```
 
-API AND ENVIRONMENT
+---
 
-API keys are stored in .env file
+# Environment Configuration
 
-OpenAI / Perplexity / Local LLMs can be plugged in
+* API keys are stored securely in `.env`
+* Supports:
 
-Backend is provider-agnostic
+  * OpenAI
+  * Perplexity
+  * Local LLMs
+* Backend is provider-agnostic and modular
 
-CURRENT STATUS
+---
 
-Offline ingestion working
+# Current Status
 
-FAISS index verified
+* Offline ingestion: Implemented and tested
+* FAISS indexing: Verified
+* Retrieval pipeline: Verified
+* Confidence-based fallback: Implemented
+* Streamlit UI: Functional
+* LLM provider billing configuration: Pending
 
-Retrieval verified
+---
 
-Confidence-based fallback implemented
+# Future Enhancements
 
-UI ready
+## Short-Term Improvements
 
-LLM billing/provider selection pending
+* Chat history memory
+* Document deletion and re-indexing
+* Hybrid search (BM25 + FAISS)
+* Improved confidence scoring
 
-EXTENSIONS POSSIBLE
+## Advanced Enhancements
 
-Immediate:
+* Agent-based orchestration
+* Web search fallback integration
+* Authentication and access control
+* Monitoring and evaluation metrics
+* Production-ready REST API deployment
 
-Chat history memory
 
-Document deletion and re-indexing
-
-Hybrid search (BM25 + FAISS)
-
-Better confidence scoring
-
-Advanced:
-
-Agent-based orchestration
-
-Web search fallback
-
-Authentication
-
-Monitoring and evaluation
-
-Production API deployment
